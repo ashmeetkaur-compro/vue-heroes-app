@@ -1,0 +1,12 @@
+<div>
+  <h3>My Heroes</h3>
+  <ul class="heroes">
+    <li v-for="hero of heroesData">
+      <a v-bind:href="'./heroes/'+ hero.id">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+      </a>
+      <!-- <button class="delete" title="delete hero"
+        (click)="delete(hero)">x</button> -->
+    </li>
+  </ul>
+</div>
