@@ -2,10 +2,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+// import HeroSearch from '@/components/hero-search/hero-search';
 
-@Component
+@Component({
+  // components: {
+  //   HeroSearch
+  // }
+})
 export default class Dashboard extends Vue {
-
   // dataURL = 'https://api.myjson.com/bins/1bomtc';
   heroesData = [];
   // @Prop() private msg!: string;
@@ -14,12 +18,20 @@ export default class Dashboard extends Vue {
     return allHeroes.slice(1, 5)
   }
 
-  created() {
-    fetch('https://api.myjson.com/bins/1bomtc')
-    .then(res => res.json())
-    .then((out) => {
-        this.heroesData = this.getHereos(out.Heroes)
-    }).catch(err => console.error(err));
+  created() {debugger;
+
+    if(!localStorage.getItem('heroesData')) {
+      fetch('https://api.myjson.com/bins/1bomtc')
+      .then(res => res.json())
+      .then((out) => {
+          localStorage.setItem('heroesData', JSON.stringify(out.Heroes));
+          this.heroesData = this.getHereos(out.Heroes)
+      }).catch(err => console.error(err));
+    }
+    else {
+      this.heroesData = this.getHereos(JSON.parse(localStorage.getItem('heroesData') || '{}'))
+    }
+    
   }
 }
 

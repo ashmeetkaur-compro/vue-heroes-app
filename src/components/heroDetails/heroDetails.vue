@@ -9,13 +9,8 @@ export default class HeroDetails extends Vue {
   heroesData = null;
 
   created() {
-
-    fetch(this.dataURL)
-    .then(res => res.json())
-    .then((out) => {
-        this.heroesData = out.Heroes.find((hero: any) => hero.id == this.$route.params.heroId);
-        console.log(this.heroesData);
-    }).catch(err => console.error(err));
+    const heroes = JSON.parse(localStorage.getItem('heroesData') || '{}');
+    this.heroesData = heroes.find((hero: any) => hero.id == this.$route.params.heroId);
   }
 }
 

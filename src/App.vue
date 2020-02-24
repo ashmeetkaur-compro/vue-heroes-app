@@ -18,6 +18,10 @@
   color: #2c3e50;
 }
 
+*{
+  box-sizing: content-box;
+}
+
 #nav {
   padding: 30px;
 
@@ -30,4 +34,5 @@
     }
   }
 }
+@import'~bootstrap/dist/css/bootstrap.css'
 </style>
